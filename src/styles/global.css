@@ -1,0 +1,76 @@
+@import 'tailwindcss';
+@import './tokens/index.css';
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --spacing-25: var(--spacing-25);
+    --spacing-50: var(--spacing-50);
+    --spacing-75: var(--spacing-75);
+    --spacing-100: var(--spacing-100);
+    --spacing-125: var(--spacing-125);
+    --spacing-150: var(--spacing-150);
+    --spacing-175: var(--spacing-175);
+    --spacing-200: var(--spacing-200);
+    --spacing-250: var(--spacing-250);
+    --spacing-300: var(--spacing-300);
+    --spacing-400: var(--spacing-400);
+    --spacing-500: var(--spacing-500);
+    --spacing-700: var(--spacing-700);
+}
+
+body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-family-body), system-ui;
+    overflow-x: clip;
+
+    &.menu-opened {
+        overflow: hidden;
+    }
+}
+
+@utility font-family-title-xs {
+    font-family: var(--font-family-title), system-ui;
+    font-size: var(--font-title-xs);
+    line-height: var(--font-line-height-title-xs);
+    letter-spacing: 0;
+}
+
+@utility font-family-title-s {
+    font-family: var(--font-family-title), system-ui;
+    font-size: var(--font-title-s);
+    line-height: var(--font-line-height-title-s);
+    letter-spacing: 0;
+}
+
+@utility font-family-body-xs {
+    font-family: var(--font-family-body), system-ui;
+    font-size: var(--font-body-xs);
+    line-height: var(--font-line-height-body-xs);
+    letter-spacing: 0;
+}
+
+@utility font-family-body-s {
+    font-family: var(--font-family-body), system-ui;
+    font-size: var(--font-body-s);
+    line-height: var(--font-line-height-body-s);
+    letter-spacing: 0;
+}
+
+@utility font-family-body-m {
+    font-family: var(--font-family-body), system-ui;
+    font-size: var(--font-body-m);
+    line-height: var(--font-line-height-body-m);
+    letter-spacing: 0;
+}
+
+@utility font-family-body-l {
+    font-family: var(--font-family-body), system-ui;
+    font-size: var(--font-body-l);
+    line-height: var(--font-line-height-body-l);
+    letter-spacing: 0;
+}

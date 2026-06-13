@@ -1,0 +1,5 @@
+.astro
+.git
+.idea
+node_modules
+dist

@@ -1,0 +1,45 @@
+---
+import { Font } from 'astro:assets';
+import { ClientRouter } from 'astro:transitions';
+import '@/styles/global.css';
+import LayoutHeader from '@/layout/LayoutHeader.astro';
+import LayoutFooter from '@/layout/LayoutFooter.astro';
+import { APP_NAME } from '@/config/contact.ts';
+
+const DEFAULT_LOCALE = 'fr-FR';
+---
+
+<!doctype html>
+<html class="antialiased" lang={DEFAULT_LOCALE}>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content={DEFAULT_LOCALE} />
+        <meta property="og:site_name" content={APP_NAME} />
+        <meta property="og:url" content={Astro.url} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href={Astro.url} />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="generator" content={Astro.generator} />
+        <ClientRouter />
+        <Font cssVariable="--font-montserrat" />
+        <Font cssVariable="--font-philosopher" />
+        <slot name="head">
+            <title>{APP_NAME}</title>
+            <meta name="description" content={APP_NAME} />
+        </slot>
+    </head>
+    <body>
+        <LayoutHeader transition:persist />
+        <main class="flex flex-col items-stretch">
+            <slot />
+        </main>
+        <LayoutFooter />
+    </body>
+</html>

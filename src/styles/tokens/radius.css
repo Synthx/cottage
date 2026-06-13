@@ -1,0 +1,13 @@
+:root {
+    --radius-none: 0rem;
+    --radius-xxxs: 0.25rem;
+    --radius-xxs: 0.5rem;
+    --radius-xs: 0.75rem;
+    --radius-s: 1rem;
+    --radius-m: 1.5rem;
+    --radius-l: 2rem;
+    --radius-xl: 2.5rem;
+    --radius-2xl: 4rem;
+    --radius-3xl: 5rem;
+    --radius-full: 999rem;
+}

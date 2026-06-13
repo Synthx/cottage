@@ -1,0 +1,26 @@
+{
+    "name": "les-tuches",
+    "type": "module",
+    "version": "0.0.1",
+    "engines": {
+        "node": ">=24"
+    },
+    "scripts": {
+        "start": "npx astro dev",
+        "build": "npx astro build",
+        "preview": "astro preview",
+        "lint": "npx prettier --check . && npx eslint .",
+        "format": "npx prettier --write ."
+    },
+    "dependencies": {
+        "@astrojs/node": "^10.1.4",
+        "@tailwindcss/vite": "^4.3.1",
+        "astro": "^6.4.6",
+        "tailwindcss": "^4.3.1"
+    },
+    "devDependencies": {
+        "prettier": "^3.8.4",
+        "prettier-plugin-astro": "^0.14.1",
+        "prettier-plugin-tailwindcss": "^0.8.0"
+    }
+}

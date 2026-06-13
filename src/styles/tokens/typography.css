@@ -1,0 +1,29 @@
+:root {
+    --font-family-body: var(--font-montserrat);
+    --font-family-title: var(--font-philosopher);
+
+    --font-normal: 400;
+    --font-semibold: 600;
+    --font-bold: 700;
+
+    --font-title-xs: 1.25rem;
+    --font-title-s: 1.5rem;
+    --font-title-m: 2rem;
+    --font-title-l: 2.5rem;
+    --font-title-xl: 3rem;
+    --font-line-height-title-xs: 1.25rem;
+    --font-line-height-title-s: 1.5rem;
+    --font-line-height-title-m: 2.125rem;
+    --font-line-height-title-l: 4.5rem;
+    --font-line-height-title-xl: 5.375rem;
+    --font-body-xs: 0.75rem;
+    --font-body-s: 0.875rem;
+    --font-body-m: 1rem;
+    --font-body-l: 1.125rem;
+    --font-body-xl: 1.25rem;
+    --font-line-height-body-xs: 1.125rem;
+    --font-line-height-body-s: 1.25rem;
+    --font-line-height-body-m: 1.5rem;
+    --font-line-height-body-l: 1.75rem;
+    --font-line-height-body-xl: 2rem;
+}

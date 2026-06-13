@@ -1,0 +1,45 @@
+---
+import { CONTACT_EMAIL, CONTACT_PHONE } from '@/config/contact.ts';
+---
+
+<div class="top-bar">
+    <div class="content justify-end">
+        <a
+            class="item"
+            title="Appelez nous maintenant"
+            href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE}</a
+        >
+        <a
+            class="item"
+            title="Contactez nous maintenant"
+            href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a
+        >
+    </div>
+</div>
+
+<style>
+    .top-bar {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+        .content {
+            padding: var(--spacing-25) var(--spacing-150) !important;
+        }
+
+        .item {
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-family: var(--font-family-body), system-ui;
+            font-size: var(--font-body-s);
+            line-height: var(--font-line-height-body-s);
+            letter-spacing: 0;
+
+            &:hover {
+                color: rgba(255, 255, 255, 1);
+            }
+        }
+    }
+</style>
