@@ -8,8 +8,8 @@
     "scripts": {
         "start": "npx astro dev",
         "build": "npx astro build",
-        "preview": "astro preview",
-        "lint": "npx prettier --check . && npx eslint .",
+        "preview": "npx astro preview",
+        "lint": "npx prettier --check . && npx eslint . && npx astro check",
         "format": "npx prettier --write ."
     },
     "dependencies": {
@@ -19,8 +19,13 @@
         "tailwindcss": "^4.3.1"
     },
     "devDependencies": {
+        "@astrojs/check": "^0.9.9",
+        "eslint": "^10.5.0",
+        "eslint-plugin-astro": "^1.7.0",
         "prettier": "^3.8.4",
         "prettier-plugin-astro": "^0.14.1",
-        "prettier-plugin-tailwindcss": "^0.8.0"
+        "prettier-plugin-tailwindcss": "^0.8.0",
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.61.0"
     }
 }
