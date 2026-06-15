@@ -1,0 +1,76 @@
+---
+import Layout from '@/layout/Layout.astro';
+import {
+    ADDRESS,
+    APP_NAME,
+    CONTACT_EMAIL,
+    CONTACT_PHONE,
+} from '@/config/contact.ts';
+import Metadata from '@/components/Metadata.astro';
+---
+
+<Layout>
+    <Metadata
+        slot="head"
+        title="Politique de confidentialité"
+        description="Politique de confidentialité"
+    />
+    <section>
+        <h1>Politique de confidentialité</h1>
+        <h2>
+            Protection des biens et des personnes – gestion des données
+            personnelles
+        </h2>
+        <p>
+            Droit d’auteur et propriété intellectuelle Selon la loi du 11 mars
+            1957 (art.41) et du code de la propriété intellectuelle du 1er
+            juillet 1992, le site internet {Astro.site} (textes, éléments graphiques,
+            photographies, etc.) constitue une œuvre protégée en France par le Code
+            de la Propriété intellectuelle, et à l’étranger par les conventions internationales
+            en vigueur sur le droit d’auteur.
+        </p>
+        <h2>Statistiques et mesures d’audience</h2>
+        <p>
+            En application de la loi n°78-17 du 6 janvier 1978 relative à
+            l’informatique, aux fichiers et aux libertés, l’internaute dispose
+            du droit d’opposition (art. 26 de la loi), d’accès (art. 34 à 38 de
+            la loi) et de rectification. Pour exercer ce droit vous pouvez vous
+            adresser à :
+        </p>
+        <p>
+            <strong>{APP_NAME}</strong><br />
+            {
+                ADDRESS.map((line) => (
+                    <>
+                        {line}
+                        <br />
+                    </>
+                ))
+            }
+            <a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE}</a><br />
+            Ou par email: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a
+            >
+        </p>
+        <h2>Informations supplémentaires</h2>
+        <h3>Comment nous protégeons vos données</h3>
+        <p>
+            La présence des liens hypertextes vers d’autres sites internet
+            n’engage pas la responsabilité du site {Astro.site}. Ces liens ne
+            sont là qu’à titre indicatif.
+        </p>
+        <h3>Propriété intellectuelle</h3>
+        <h3>Liens hypertextes</h3>
+    </section>
+</Layout>
+
+<style>
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 auto;
+        max-width: 1280px;
+        width: 100%;
+        padding: var(--spacing-500) var(--spacing-150);
+    }
+</style>

@@ -26,11 +26,39 @@ body {
     background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-family-body), system-ui;
+    font-size: var(--font-body-m);
+    line-height: var(--font-line-height-body-m);
+    letter-spacing: 0;
     overflow-x: clip;
 
     &.menu-opened {
         overflow: hidden;
     }
+}
+
+h1 {
+    color: var(--color-primary);
+    font-family: var(--font-family-title), system-ui;
+    font-size: var(--font-title-xl);
+    font-weight: var(--font-bold);
+    line-height: var(--font-line-height-title-xl);
+    text-transform: uppercase;
+}
+
+h2 {
+    color: var(--color-primary);
+    font-family: var(--font-family-title), system-ui;
+    font-size: var(--font-title-l);
+    font-weight: var(--font-bold);
+    line-height: var(--font-line-height-title-l);
+    text-transform: uppercase;
+}
+
+p {
+    font-family: var(--font-family-body), system-ui;
+    font-size: var(--font-body-m);
+    line-height: var(--font-line-height-body-m);
+    letter-spacing: 0;
 }
 
 @utility font-family-title-xs {

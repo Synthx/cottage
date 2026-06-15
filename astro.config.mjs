@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import node from '@astrojs/node';
 
 export default defineConfig({
+    site: 'http://w2d6n9wxvwvgvfn2qpxvtcf8.217.182.207.128.sslip.io',
     vite: {
         plugins: [tailwindcss()],
     },

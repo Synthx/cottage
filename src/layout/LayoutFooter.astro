@@ -1,13 +1,19 @@
 ---
 import { APP_NAME } from '@/config/contact.ts';
+
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="footer">
     <div class="copyright">
-        <span class="text">Copyright © {currentYear} {APP_NAME}</span>
+        <span class="notice">Copyright © {currentYear} {APP_NAME}</span>
+        <div class="legal">
+            <a class="link" href="/legal-notice"> Mentions légales </a>
+            <a class="link" href="/privacy-policy">
+                Politique de confidentialité
+            </a>
+        </div>
     </div>
-    <div class="legal"></div>
 </footer>
 
 <style>
@@ -24,17 +30,28 @@ const currentYear = new Date().getFullYear();
             gap: var(--spacing-150);
             padding: var(--spacing-100) var(--spacing-150);
 
-            .text {
+            .notice {
                 font-size: var(--font-body-s);
                 line-height: var(--font-line-height-body-s);
                 letter-spacing: 0;
             }
-        }
 
-        .legal {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-100);
+            .legal {
+                display: flex;
+                align-items: center;
+                gap: var(--spacing-75);
+
+                .link {
+                    font-size: var(--font-body-s);
+                    line-height: var(--font-line-height-body-s);
+                    letter-spacing: 0;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
         }
     }
 </style>

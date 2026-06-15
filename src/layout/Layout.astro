@@ -1,12 +1,18 @@
 ---
 import { Font } from 'astro:assets';
-import { ClientRouter } from 'astro:transitions';
 import '@/styles/global.css';
 import LayoutHeader from '@/layout/LayoutHeader.astro';
 import LayoutFooter from '@/layout/LayoutFooter.astro';
 import { APP_NAME } from '@/config/contact.ts';
 
+interface Props {
+    headerVariant?: 'default' | 'transparent';
+}
+
+const { headerVariant } = Astro.props;
+
 const DEFAULT_LOCALE = 'fr-FR';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -21,13 +27,12 @@ const DEFAULT_LOCALE = 'fr-FR';
         <meta property="og:type" content="website" />
         <meta property="og:locale" content={DEFAULT_LOCALE} />
         <meta property="og:site_name" content={APP_NAME} />
-        <meta property="og:url" content={Astro.url} />
+        <meta property="og:url" content={canonicalURL} />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href={Astro.url} />
+        <link rel="canonical" href={canonicalURL} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
-        <ClientRouter />
         <Font cssVariable="--font-montserrat" />
         <Font cssVariable="--font-philosopher" />
         <slot name="head">
@@ -36,10 +41,10 @@ const DEFAULT_LOCALE = 'fr-FR';
         </slot>
     </head>
     <body>
-        <LayoutHeader transition:persist />
+        <LayoutHeader variant={headerVariant} transition:persist />
         <main class="flex flex-col items-stretch">
             <slot />
         </main>
-        <LayoutFooter />
+        <LayoutFooter transition:persist />
     </body>
 </html>

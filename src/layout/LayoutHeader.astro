@@ -1,9 +1,14 @@
 ---
 import LayoutHeaderTopBar from '@/layout/LayoutHeaderTopBar.astro';
-import Link from '@/components/action/Link.astro';
+
+interface Props {
+    variant?: 'default' | 'transparent';
+}
+
+const { variant = 'default' } = Astro.props;
 ---
 
-<header class="header">
+<header class:list={['header', variant]}>
     <LayoutHeaderTopBar />
     <nav class="content justify-between">
         <ul class="navigation">
@@ -22,18 +27,91 @@ import Link from '@/components/action/Link.astro';
 </header>
 
 <style>
+    @property --padding-bottom {
+        syntax: '<length>';
+        inherits: false;
+        initial-value: 0rem;
+    }
+
+    @property --shadow-opacity {
+        syntax: '<number>';
+        inherits: false;
+        initial-value: 0;
+    }
+
     .header {
-        position: fixed;
         top: 0;
-        left: 0;
-        right: 0;
+        width: 100%;
         z-index: 100;
-        background: linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0) 0%,
-            rgba(0, 0, 0, 0) 2%,
-            rgba(0, 0, 0, 0.95) 100%
-        );
+        box-shadow: rgba(0, 0, 0, calc(0.2 * var(--shadow-opacity))) 0 2px 8px;
+        animation: headerScrollVariables linear auto both;
+        animation-timeline: scroll(root);
+        animation-range: 0 150px;
+
+        &.default {
+            position: sticky;
+            background: var(--background);
+
+            .top-bar {
+                background: var(--primary);
+                border-bottom-color: var(--primary);
+            }
+
+            .content {
+                .navigation .item {
+                    color: var(--primary);
+
+                    &:hover {
+                        border-bottom-color: var(--primary);
+                    }
+                }
+
+                .link {
+                    color: var(--primary);
+                    border-color: var(--primary);
+
+                    &:hover {
+                        background: var(--primary);
+                        color: var(--primary-foreground);
+                    }
+                }
+            }
+        }
+
+        &.transparent {
+            position: fixed;
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0) 2%,
+                rgba(0, 0, 0, 0.95) 100%
+            );
+
+            .top-bar {
+                background: transparent;
+                border-bottom-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .content {
+                .navigation .item {
+                    color: rgb(255, 255, 255);
+
+                    &:hover {
+                        border-bottom-color: rgb(255, 255, 255);
+                    }
+                }
+
+                .link {
+                    color: var(--primary-foreground);
+                    border-color: var(--primary-foreground);
+
+                    &:hover {
+                        background: var(--primary-foreground);
+                        color: var(--primary);
+                    }
+                }
+            }
+        }
 
         .content {
             display: flex;
@@ -41,7 +119,7 @@ import Link from '@/components/action/Link.astro';
             width: 100%;
             max-width: 1280px;
             margin: 0 auto;
-            padding: var(--spacing-100) var(--spacing-150) var(--spacing-400);
+            padding: var(--spacing-100) var(--spacing-150) var(--padding-bottom);
 
             .navigation {
                 display: flex;
@@ -49,7 +127,6 @@ import Link from '@/components/action/Link.astro';
                 gap: var(--spacing-150);
 
                 .item {
-                    color: rgb(255, 255, 255);
                     text-transform: uppercase;
                     text-decoration: none;
                     border-bottom: 2px solid transparent;
@@ -59,17 +136,12 @@ import Link from '@/components/action/Link.astro';
                     font-weight: var(--font-bold);
                     line-height: var(--font-line-height-title-xs);
                     letter-spacing: 0;
-
-                    &:hover {
-                        border-bottom-color: rgb(255, 255, 255);
-                    }
                 }
             }
 
             .link {
-                color: var(--primary-foreground);
                 background: transparent;
-                border: 1px solid var(--primary-foreground);
+                border: 1px solid;
                 text-align: center;
                 text-decoration: none;
                 text-transform: uppercase;
@@ -80,12 +152,19 @@ import Link from '@/components/action/Link.astro';
                 line-height: var(--font-line-height-body-m);
                 letter-spacing: 0;
                 padding: 6px 20px;
-
-                &:hover {
-                    background: var(--primary-foreground);
-                    color: var(--primary);
-                }
             }
+        }
+    }
+
+    @keyframes headerScrollVariables {
+        from {
+            --padding-bottom: var(--spacing-400);
+            --shadow-opacity: 0;
+        }
+
+        to {
+            --padding-bottom: var(--spacing-100);
+            --shadow-opacity: 1;
         }
     }
 </style>
