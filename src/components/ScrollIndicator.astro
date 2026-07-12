@@ -1,0 +1,38 @@
+---
+import ChevronDownIcon from '@/assets/icons/ChevronDownIcon.svg';
+---
+
+<span aria-hidden="true" class:list={['scroll-indicator']}>
+    <ChevronDownIcon />
+</span>
+
+<style>
+    .scroll-indicator {
+        height: 60px;
+        width: 60px;
+        border-radius: var(--radius-full);
+        background-color: #ffffff33;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: jumpInfinite 2s infinite;
+
+        svg.icon {
+            height: 40px;
+            width: 40px;
+        }
+    }
+
+    @keyframes jumpInfinite {
+        0% {
+            margin-bottom: 0;
+        }
+        50% {
+            margin-bottom: var(--spacing-100);
+        }
+        100% {
+            margin-bottom: 0;
+        }
+    }
+</style>

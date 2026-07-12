@@ -1,0 +1,96 @@
+---
+import PhotoPlaceholder from '@/components/PhotoPlaceholder.astro';
+import BackgroundSection from '@/components/pages/BackgroundSection.astro';
+
+interface Props {
+    title: string;
+    variant: 'grid3' | 'mosaic' | 'grid4';
+    count: number;
+    featuredLabel?: string;
+}
+
+const { title, variant, count, featuredLabel } = Astro.props;
+const tiles = Array.from({ length: count });
+---
+
+<BackgroundSection backgroundColor="alternate" title={title}>
+    <div class:list={['tiles', variant]}>
+        {
+            tiles.map((_, index) => (
+                <PhotoPlaceholder
+                    class:list={[{ big: variant === 'mosaic' && index === 0 }]}
+                    label={
+                        variant === 'mosaic' && index === 0
+                            ? featuredLabel
+                            : undefined
+                    }
+                />
+            ))
+        }
+    </div>
+</BackgroundSection>
+
+<style>
+    .group + :global(.group) {
+        margin-top: var(--spacing-400);
+    }
+
+    .tiles {
+        display: grid;
+        gap: var(--spacing-75);
+    }
+
+    .tiles :global(.photo-placeholder) {
+        border-radius: var(--radius-xs);
+    }
+
+    .grid3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid3 :global(.photo-placeholder) {
+        aspect-ratio: 4 / 3;
+    }
+
+    .grid4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .grid4 :global(.photo-placeholder) {
+        aspect-ratio: 1;
+    }
+
+    .mosaic {
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: 220px 220px;
+    }
+
+    .mosaic :global(.big) {
+        grid-row: 1 / 3;
+    }
+
+    @media (max-width: 860px) {
+        .grid3 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .grid4 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .mosaic {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto;
+        }
+
+        .mosaic :global(.photo-placeholder) {
+            min-height: 150px;
+        }
+
+        .mosaic :global(.big) {
+            grid-row: auto;
+            grid-column: 1 / 3;
+            min-height: 200px;
+        }
+    }
+</style>

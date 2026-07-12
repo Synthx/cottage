@@ -15,15 +15,16 @@ export default defineConfig({
     fonts: [
         {
             provider: fontProviders.google(),
-            name: 'Montserrat',
-            cssVariable: '--font-montserrat',
-            weights: [400, 600, 700],
+            name: 'Mulish',
+            cssVariable: '--font-mulish',
+            weights: [300, 400, 500, 600, 700],
         },
         {
             provider: fontProviders.google(),
-            name: 'Philosopher',
-            cssVariable: '--font-philosopher',
-            weights: [400, 600, 700],
+            name: 'Cormorant Garamond',
+            cssVariable: '--font-cormorant',
+            weights: [500, 600],
+            styles: ['normal', 'italic'],
         },
     ],
     experimental: {

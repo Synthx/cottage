@@ -3,7 +3,7 @@ FROM node:24-alpine AS base
 FROM base AS deps
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
 FROM base AS build
 WORKDIR /app

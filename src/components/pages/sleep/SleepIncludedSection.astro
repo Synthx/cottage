@@ -1,0 +1,113 @@
+---
+import Accordion from '@/components/pages/Accordion.astro';
+import BackgroundSection from '@/components/pages/BackgroundSection.astro';
+import Breadcrumb from '@/components/pages/Breadcrumb.astro';
+
+const ADDITIONAL_INFO = [
+    'Les chambres sont exclusivement pour 2 personnes, il n’est pas possible de rajouter de lit supplémentaire.',
+    'Check in entre 17h et 21h. Aucune arrivée avant 17h.',
+    'Check out avant 11h le jour de votre départ.',
+    'Les chambres ne sont pas accessibles aux personnes à mobilité réduite.',
+    'Wi-Fi disponible dans toutes les chambres.',
+    'Nous n’acceptons pas les animaux.',
+    'Séjour non-fumeur à l’intérieur du gîte.',
+    'Les fêtes ne sont pas autorisées.',
+];
+
+const INCLUDED = [
+    {
+        title: 'Le petit déjeuner',
+        text: 'Pain maison, confitures du verger, produits fermiers.',
+    },
+    {
+        title: 'Le linge de lin',
+        text: 'Draps et serviettes en lin lavé, changés à mi-séjour.',
+    },
+    {
+        title: 'Le jardin',
+        text: 'Verger, potager en permaculture et transats à l’ombre.',
+    },
+    {
+        title: 'Les conseils',
+        text: 'Cartes des sentiers, adresses et bonnes tables du coin.',
+    },
+];
+---
+
+<BackgroundSection
+    backgroundColor="alternate"
+    eyebrow="Toujours inclus"
+    title="Ce qui vient avec la chambre"
+>
+    <Breadcrumb links={[{ href: '/bedrooms', label: 'Les chambres' }]} />
+    <ul class="grid">
+        {
+            INCLUDED.map((item) => (
+                <li>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                </li>
+            ))
+        }
+    </ul>
+    <p>
+        Les 3 chambres d’hôtes allient confort et raffinement, dans un esprit
+        côte atlantique aux teintes douces et reposantes de bleu ciel, bleu
+        orage et outremer apportant un effet vacances à la mer dans un cadre
+        élégant et apaisant. Toutes les chambres ont un accès indépendant dans
+        le jardin paysager et elles sont équipées d’une salle d’eau avec douche,
+        lavabos et toilettes privatives dans un style contemporain chic.
+    </p>
+    <Accordion title="Informations complémentaires">
+        <ul class="info-list">
+            {ADDITIONAL_INFO.map((info) => <li>{info}</li>)}
+        </ul>
+    </Accordion>
+</BackgroundSection>
+
+<style>
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--spacing-150);
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .grid li {
+        text-align: center;
+    }
+
+    .grid h3 {
+        font-size: var(--font-title-xs);
+        color: var(--clay);
+    }
+
+    .grid p {
+        font-size: var(--font-body-s);
+        line-height: 1.6;
+        opacity: 0.8;
+        margin-top: var(--spacing-50);
+    }
+
+    .info-list {
+        list-style: disc;
+        padding: var(--spacing-150) var(--spacing-150) 0
+            calc(var(--spacing-150) + 1.2em);
+        display: grid;
+        gap: var(--spacing-75);
+    }
+
+    .info-list li {
+        font-size: var(--font-body-s);
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+
+    @media (max-width: 860px) {
+        .grid {
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-200) var(--spacing-150);
+        }
+    }
+</style>

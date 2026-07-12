@@ -1,0 +1,264 @@
+---
+import { getCollection } from 'astro:content';
+import PhotoPlaceholder from '@/components/PhotoPlaceholder.astro';
+import {
+    APP_NAME,
+    CONTACT_EMAIL,
+    CONTACT_PHONE,
+    ADDRESS,
+} from '@/config/contact.ts';
+
+const rooms = (await getCollection('bedrooms')).sort(
+    (a, b) => a.data.order - b.data.order,
+);
+
+const phoneHref = `tel:${CONTACT_PHONE.replace(/[^+\d]/g, '')}`;
+const mailHref = `mailto:${CONTACT_EMAIL}`;
+---
+
+<section class="contact clos-pad">
+    <form class="form" action={mailHref} method="post">
+        <h2>Demande de disponibilité</h2>
+        <p class="note">
+            Nous répondons sous 24 h. Aucune réservation ferme tant que nous ne
+            l’avons pas confirmée ensemble.
+        </p>
+
+        <div class="row">
+            <label>
+                Arrivée
+                <input type="date" name="arrivee" />
+            </label>
+            <label>
+                Départ
+                <input type="date" name="depart" />
+            </label>
+        </div>
+
+        <div class="row">
+            <label>
+                Chambre
+                <select name="chambre">
+                    {rooms.map((room) => <option>{room.data.name}</option>)}
+                </select>
+            </label>
+            <label>
+                Voyageurs
+                <select name="voyageurs">
+                    <option>1 personne</option>
+                    <option>2 personnes</option>
+                    <option>3 personnes</option>
+                    <option>4 personnes</option>
+                </select>
+            </label>
+        </div>
+
+        <label>
+            Nom &amp; e-mail
+            <input
+                type="text"
+                name="contact"
+                placeholder="Votre nom, votre e-mail"
+            />
+        </label>
+
+        <label>
+            Message
+            <textarea
+                name="message"
+                rows="3"
+                placeholder="Dites-nous en un mot ce qui vous ferait plaisir…"
+            ></textarea>
+        </label>
+
+        <button type="submit">Envoyer ma demande</button>
+    </form>
+
+    <div class="aside">
+        <PhotoPlaceholder class="map" label="Carte — situer la ferme" />
+
+        <div class="info">
+            <h3>{APP_NAME}</h3>
+            <address class="lines">
+                {ADDRESS.map((line) => <span>{line}</span>)}
+            </address>
+            <div class="divider"></div>
+            <div class="lines">
+                <a href={phoneHref}>{CONTACT_PHONE}</a>
+                <a href={mailHref}>{CONTACT_EMAIL}</a>
+            </div>
+            <div class="divider"></div>
+            <p class="how">
+                <strong>Comment venir</strong><br />
+                Lille — 45 min · Dunkerque — 40 min<br />
+                Parking sur place · à deux pas des sentiers
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .contact {
+        display: flex;
+        gap: var(--spacing-300);
+        align-items: flex-start;
+        background: var(--cream);
+        max-width: 1320px;
+        margin: 0 auto;
+        padding-block: var(--spacing-400);
+    }
+
+    .form {
+        flex: 1;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-s);
+        padding: var(--spacing-250);
+    }
+
+    .form h2 {
+        font-size: var(--font-title-m);
+        color: var(--brown);
+    }
+
+    .note {
+        font-size: var(--font-body-s);
+        color: var(--muted);
+        margin: var(--spacing-50) 0 var(--spacing-175);
+    }
+
+    .row {
+        display: flex;
+        gap: var(--spacing-75);
+    }
+
+    label {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        margin-bottom: var(--spacing-100);
+        font-size: var(--font-body-xs);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: var(--font-semibold);
+        color: var(--muted);
+    }
+
+    input,
+    select,
+    textarea {
+        font-family: var(--font-family-body), sans-serif;
+        font-size: var(--font-body-s);
+        font-weight: var(--font-normal);
+        letter-spacing: 0;
+        text-transform: none;
+        padding: 12px 13px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-xxs);
+        background: var(--cream);
+        color: var(--brown);
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: 2px solid var(--terra);
+        outline-offset: 1px;
+    }
+
+    button {
+        width: 100%;
+        margin-top: var(--spacing-75);
+        border: none;
+        background: var(--terra);
+        color: var(--cream);
+        font-family: var(--font-family-body), sans-serif;
+        font-weight: var(--font-semibold);
+        font-size: var(--font-body-m);
+        padding: 16px;
+        border-radius: var(--radius-xs);
+        cursor: pointer;
+        transition: background 0.18s ease;
+    }
+
+    button:hover {
+        background: var(--terra-dark);
+    }
+
+    .aside {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-150);
+    }
+
+    .map {
+        height: 300px;
+        border-radius: var(--radius-s);
+        border: 1px solid var(--line);
+    }
+
+    .info {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-s);
+        padding: var(--spacing-200);
+    }
+
+    .info h3 {
+        font-size: var(--font-title-s);
+        color: var(--brown);
+        margin-bottom: var(--spacing-100);
+    }
+
+    .lines {
+        display: flex;
+        flex-direction: column;
+        font-style: normal;
+        font-size: var(--font-body-s);
+        line-height: 1.9;
+        color: var(--brown);
+    }
+
+    .lines a {
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.18s ease;
+    }
+
+    .lines a:hover {
+        color: var(--terra);
+    }
+
+    .divider {
+        height: 1px;
+        background: var(--line);
+        margin: var(--spacing-125) 0;
+    }
+
+    .how {
+        font-size: var(--font-body-s);
+        line-height: 1.8;
+        color: var(--muted);
+    }
+
+    .how strong {
+        color: var(--brown);
+    }
+
+    @media (max-width: 860px) {
+        .contact {
+            flex-direction: column;
+        }
+
+        .form,
+        .aside {
+            width: 100%;
+        }
+    }
+</style>

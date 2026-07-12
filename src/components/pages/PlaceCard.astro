@@ -1,0 +1,57 @@
+---
+import PhotoPlaceholder from '@/components/PhotoPlaceholder.astro';
+
+interface Props {
+    title: string;
+    text: string;
+    /** Short distance / timing label shown above the title (e.g. "15 min"). */
+    distance?: string;
+}
+
+const { title, text, distance } = Astro.props;
+---
+
+<article class="place-card">
+    <PhotoPlaceholder class="thumb" />
+    <div class="body">
+        {distance && <span class="distance">{distance}</span>}
+        <h3>{title}</h3>
+        <p>{text}</p>
+    </div>
+</article>
+
+<style>
+    .place-card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-s);
+        overflow: hidden;
+    }
+
+    .thumb {
+        height: 180px;
+    }
+
+    .body {
+        padding: var(--spacing-150);
+    }
+
+    .distance {
+        font-family: var(--font-family-title), serif;
+        font-size: 0.9375rem;
+        color: var(--terra);
+    }
+
+    .body h3 {
+        font-size: var(--font-title-s);
+        color: var(--brown);
+        margin-top: var(--spacing-25);
+    }
+
+    .body p {
+        font-size: var(--font-body-s);
+        line-height: 1.6;
+        color: var(--muted);
+        margin-top: var(--spacing-50);
+    }
+</style>

@@ -1,0 +1,18 @@
+---
+interface Props {
+    name:
+        | 'arrow-right-up-line'
+        | 'file'
+        | 'camera'
+        | 'mail'
+        | 'chevron-left'
+        | 'chevron-right'
+        | 'chevron-down';
+}
+
+const { name } = Astro.props;
+---
+
+<svg class:list={['icon']} aria-hidden="true" focusable="false">
+    <use href={`/icons.svg#${name}`}></use>
+</svg>

@@ -1,0 +1,19 @@
+---
+import Layout from '@/layout/Layout.astro';
+import PageHeader from '@/components/pages/PageHeader.astro';
+import ContactSection from '@/components/pages/contact/ContactSection.astro';
+import HeaderBackgroundImage from '@/assets/images/sleep/header.jpg';
+---
+
+<Layout
+    headerVariant="transparent"
+    title="Nous trouver"
+    description="Réserver et venir au Clos des 3 Monts — demande de disponibilité, adresse et accès dans les Monts de Flandre."
+>
+    <PageHeader
+        backgroundImage={HeaderBackgroundImage}
+        eyebrow="Nous trouver"
+        title="Réserver & venir au Clos"
+    />
+    <ContactSection />
+</Layout>

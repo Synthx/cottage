@@ -1,0 +1,80 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+    backgroundImage: ImageMetadata;
+    eyebrow?: string;
+    title: string;
+}
+
+const { backgroundImage, eyebrow, title } = Astro.props;
+---
+
+<header class="page-header-container">
+    <Image
+        src={backgroundImage}
+        loading="eager"
+        fetchpriority="high"
+        class="picture"
+        layout="full-width"
+        alt=""
+    />
+    <div class="page-header">
+        <div class="page-header-content">
+            {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+            <h1>{title}</h1>
+        </div>
+    </div>
+</header>
+
+<style>
+    .page-header-container {
+        position: relative;
+        height: 550px;
+        background-color: var(--color-bg);
+    }
+
+    .picture {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .page-header {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0) 2%,
+            rgba(0, 0, 0, 0.5) 100%
+        );
+
+        .page-header-content {
+            height: 100%;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-block: var(--spacing-250);
+            padding-inline: var(--spacing-450);
+
+            .eyebrow {
+                font-weight: var(--font-semibold);
+            }
+
+            h1 {
+                color: var(--color-fg-inverse);
+                font-weight: var(--font-bold);
+            }
+        }
+    }
+</style>

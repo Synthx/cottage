@@ -1,0 +1,72 @@
+---
+interface Props {
+    level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+    subtitle: string;
+}
+
+const { level, subtitle } = Astro.props;
+const Tag = level;
+---
+
+<div class="title">
+    <div class="sub-title">
+        <span>{subtitle}</span>
+    </div>
+    <Tag class="main-title">
+        <slot />
+    </Tag>
+</div>
+
+<style>
+    .title {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-50);
+        max-width: 800px;
+        margin: 0 auto;
+
+        .sub-title {
+            position: relative;
+            display: inline-block;
+            text-align: left;
+            text-transform: uppercase;
+            font-family: var(--font-family-title), system-ui;
+            font-size: var(--font-title-s);
+            line-height: 1;
+            letter-spacing: 0;
+            color: var(--secondary);
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: var(--secondary);
+                z-index: 0;
+            }
+
+            span {
+                position: relative;
+                display: inline-block;
+                padding-right: var(--spacing-50);
+                background: var(--background);
+                z-index: 2;
+            }
+        }
+
+        .main-title {
+            text-transform: uppercase;
+            font-family: var(--font-family-title), system-ui;
+            font-size: var(--font-title-xl);
+            font-weight: var(--font-bold);
+            line-height: 1;
+            letter-spacing: 0;
+            color: var(--primary);
+            text-align: left;
+            text-wrap: pretty;
+        }
+    }
+</style>

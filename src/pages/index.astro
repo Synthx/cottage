@@ -1,19 +1,22 @@
 ---
 import Layout from '@/layout/Layout.astro';
+import HomeHeroSection from '@/components/pages/home/HomeHeroSection.astro';
+import HomeIntroSection from '@/components/pages/home/HomeIntroSection.astro';
+import HomeRoomsSection from '@/components/pages/home/HomeRoomsSection.astro';
+import HomeGallerySection from '@/components/pages/home/HomeGallerySection.astro';
+import HomeSurroundingsSection from '@/components/pages/home/HomeSurroundingsSection.astro';
+import HomeReviewsSection from '@/components/pages/home/HomeReviewsSection.astro';
+import HostSection from '@/components/HostSection.astro';
 ---
 
 <Layout headerVariant="transparent">
-    <section
-        class="flex h-screen flex-col items-center justify-center bg-fixed"
-    >
-        <div></div>
-    </section>
+    <div class="clos-fade">
+        <HomeHeroSection />
+        <HomeIntroSection />
+        <HomeRoomsSection />
+        <HostSection />
+        <HomeGallerySection />
+        <HomeSurroundingsSection />
+        <HomeReviewsSection />
+    </div>
 </Layout>
-
-<style>
-    section {
-        background-image: url('https://images.unsplash.com/photo-1586982599726-11708daaceca?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-        background-size: cover;
-        background-position: center;
-    }
-</style>

@@ -1,0 +1,83 @@
+---
+import PhotoPlaceholder from '@/components/PhotoPlaceholder.astro';
+import BackgroundSection from '@/components/pages/BackgroundSection.astro';
+import Breadcrumb from '@/components/pages/Breadcrumb.astro';
+---
+
+<BackgroundSection backgroundColor="alternate">
+    <Breadcrumb links={[{ href: '/house', label: 'La maison' }]} />
+    <div class="inner">
+        <div class="media">
+            <PhotoPlaceholder label="Photo — la ferme / détail brique" />
+        </div>
+        <div class="body">
+            <p class="lead">
+                Nous avons quitté la ville en 2016 pour réveiller cette longère
+                flamande endormie depuis des années.
+            </p>
+            <p>
+                Tomettes cirées, poutres brutes remontées à la main, enduits à
+                la chaux, jardin repensé en permaculture : chaque détail raconte
+                le Nord et ses matières. Nous avons voulu une maison qui respire
+                — simple, chaleureuse, jamais figée.
+            </p>
+            <p>
+                Le matin, le pain sort du four et la confiture vient du verger.
+                Le soir, on allume un grand feu et on refait le monde autour de
+                la longue table de ferme.
+            </p>
+        </div>
+    </div>
+</BackgroundSection>
+
+<style>
+    .inner {
+        display: flex;
+        gap: var(--spacing-350);
+        align-items: flex-start;
+    }
+
+    .media {
+        flex: 1;
+        min-height: 420px;
+    }
+
+    .media :global(.photo-placeholder) {
+        height: 100%;
+        border-radius: var(--radius-s);
+    }
+
+    .body {
+        flex: 1.05;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-100);
+    }
+
+    .lead {
+        font-family: var(--font-family-title), serif;
+        font-size: 1.625rem;
+        line-height: 1.5;
+        font-weight: var(--font-medium);
+        color: var(--brown);
+        margin-bottom: var(--spacing-75);
+    }
+
+    .body p {
+        line-height: 1.8;
+        color: var(--muted);
+        margin: 0;
+    }
+
+    @media (max-width: 860px) {
+        .story {
+            flex-direction: column;
+            gap: var(--spacing-250);
+            align-items: stretch;
+        }
+
+        .media {
+            min-height: 280px;
+        }
+    }
+</style>

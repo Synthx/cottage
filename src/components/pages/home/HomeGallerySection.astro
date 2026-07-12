@@ -1,0 +1,41 @@
+---
+import PhotoPlaceholder from '@/components/PhotoPlaceholder.astro';
+import BackgroundSection from '@/components/pages/BackgroundSection.astro';
+import Link from '@/components/action/Link.astro';
+---
+
+<BackgroundSection
+    backgroundColor="base"
+    eyebrow="Galerie"
+    title="Un air de campagne"
+>
+    <div class="mosaic">
+        <PhotoPlaceholder class="big" label="petit déjeuner" />
+        <PhotoPlaceholder />
+        <PhotoPlaceholder />
+        <PhotoPlaceholder />
+        <PhotoPlaceholder />
+    </div>
+    <Link class="cta" href="/gallery"> Voir toute la galerie </Link>
+</BackgroundSection>
+
+<style>
+    .mosaic {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: 200px 200px;
+        gap: var(--spacing-75);
+    }
+
+    .mosaic :global(.photo-placeholder) {
+        border-radius: var(--radius-xs);
+    }
+
+    .mosaic :global(.big) {
+        grid-row: 1 / 3;
+    }
+
+    .cta {
+        align-self: center;
+    }
+</style>

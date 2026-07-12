@@ -1,0 +1,21 @@
+---
+import Layout from '@/layout/Layout.astro';
+import PageHeader from '@/components/pages/PageHeader.astro';
+import SleepRoomsSection from '@/components/pages/sleep/SleepRoomsSection.astro';
+import SleepIncludedSection from '@/components/pages/sleep/SleepIncludedSection.astro';
+import HeaderBackgroundImage from '@/assets/images/sleep/header.jpg';
+---
+
+<Layout
+    title="Les chambres"
+    description="Nos chambres d’hôtes de charme, literie en lin lavé, salle d’eau privative et petit déjeuner fermier — au cœur des Monts de Flandre."
+    headerVariant="transparent"
+>
+    <PageHeader
+        backgroundImage={HeaderBackgroundImage}
+        eyebrow="Les chambres"
+        title="Des nids sous les toits"
+    />
+    <SleepIncludedSection />
+    <SleepRoomsSection />
+</Layout>

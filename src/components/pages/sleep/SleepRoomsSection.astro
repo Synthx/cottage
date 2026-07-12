@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import RoomPreviewRow from '@/components/pages/RoomPreviewRow.astro';
+
+const rooms = (await getCollection('bedrooms')).sort(
+    (a, b) => a.data.order - b.data.order,
+);
+
+const firstParagraph = (body: string | undefined) =>
+    (body ?? '')
+        .trim()
+        .split(/\n\s*\n/)[0]
+        .replace(/\s+/g, ' ')
+        .trim();
+---
+
+<section class="rooms">
+    {
+        rooms.map((room, index) => (
+            <RoomPreviewRow
+                room={room.data}
+                description={firstParagraph(room.body)}
+                tags={[
+                    `${room.data.capacity} personnes`,
+                    `${room.data.surface} m²`,
+                ]}
+                reverse={index % 2 === 1}
+            />
+        ))
+    }
+</section>
+
+<style>
+    .rooms {
+        display: flex;
+        flex-direction: column;
+    }
+</style>

@@ -4,15 +4,20 @@ import '@/styles/global.css';
 import LayoutHeader from '@/layout/LayoutHeader.astro';
 import LayoutFooter from '@/layout/LayoutFooter.astro';
 import { APP_NAME } from '@/config/contact.ts';
+import { DEFAULT_LOCALE } from '@/config/constant.ts';
 
 interface Props {
     headerVariant?: 'default' | 'transparent';
+    title?: string;
+    description?: string;
 }
 
-const { headerVariant } = Astro.props;
+const { headerVariant, title, description } = Astro.props;
 
-const DEFAULT_LOCALE = 'fr-FR';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const pageTitle = title ? `${title} | ${APP_NAME}` : APP_NAME;
+const pageDescription = description ?? APP_NAME;
 ---
 
 <!doctype html>
@@ -33,16 +38,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
-        <Font cssVariable="--font-montserrat" />
-        <Font cssVariable="--font-philosopher" />
-        <slot name="head">
-            <title>{APP_NAME}</title>
-            <meta name="description" content={APP_NAME} />
-        </slot>
+        <Font cssVariable="--font-mulish" />
+        <Font cssVariable="--font-cormorant" />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="twitter:title" content={pageTitle} />
+        <meta property="twitter:description" content={pageDescription} />
     </head>
     <body>
         <LayoutHeader variant={headerVariant} transition:persist />
-        <main class="flex flex-col items-stretch">
+        <main class="flex flex-col">
             <slot />
         </main>
         <LayoutFooter transition:persist />

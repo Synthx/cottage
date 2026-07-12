@@ -1,0 +1,42 @@
+---
+import { APP_NAME } from '@/config/contact.ts';
+import type { Link } from '@/content/schemas/shared.ts';
+
+interface Props {
+    links: Link[];
+}
+
+const { links } = Astro.props;
+---
+
+<nav aria-label="Vous êtes ici:">
+    <ol class="breadcrumb">
+        <li>
+            <a href="/">{APP_NAME}</a>
+        </li>
+        {
+            links.map((link) => (
+                <li>
+                    <a href={link.href}>{link.label}</a>
+                </li>
+            ))
+        }
+    </ol>
+</nav>
+
+<style>
+    .breadcrumb {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-50);
+
+        li a {
+            color: var(--color-fg-subtle);
+            text-decoration: none;
+            font-size: var(--font-body-s);
+            line-height: var(--font-line-height-body-s);
+            letter-spacing: 0;
+        }
+    }
+</style>

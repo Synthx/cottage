@@ -1,11 +1,31 @@
 @import 'tailwindcss';
+@import './components/index.css';
 @import './tokens/index.css';
 
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
+    --color-card: var(--card);
     --color-primary: var(--primary);
     --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-accent: var(--accent);
+
+    /* Palette */
+    --color-cream: var(--cream);
+    --color-paper: var(--paper);
+    --color-terra: var(--terra);
+    --color-terra-dark: var(--terra-dark);
+    --color-clay: var(--clay);
+    --color-beige: var(--beige);
+    --color-beige-dark: var(--beige-dark);
+    --color-sage: var(--sage);
+    --color-sage-dark: var(--sage-dark);
+    --color-brown: var(--brown);
+    --color-muted: var(--muted);
+
+    --font-title: var(--font-family-title);
+    --font-body: var(--font-family-body);
 
     --spacing-25: var(--spacing-25);
     --spacing-50: var(--spacing-50);
@@ -23,10 +43,11 @@
 }
 
 body {
-    background: var(--color-background);
-    color: var(--color-foreground);
-    font-family: var(--font-family-body), system-ui;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-family-body), system-ui, sans-serif;
     font-size: var(--font-body-m);
+    font-weight: var(--font-normal);
     line-height: var(--font-line-height-body-m);
     letter-spacing: 0;
     overflow-x: clip;
@@ -37,68 +58,84 @@ body {
 }
 
 h1 {
-    color: var(--color-primary);
-    font-family: var(--font-family-title), system-ui;
+    font-family: var(--font-family-title), system-ui, serif;
     font-size: var(--font-title-xl);
-    font-weight: var(--font-bold);
     line-height: var(--font-line-height-title-xl);
-    text-transform: uppercase;
 }
 
 h2 {
-    color: var(--color-primary);
-    font-family: var(--font-family-title), system-ui;
+    font-family: var(--font-family-title), system-ui, serif;
     font-size: var(--font-title-l);
-    font-weight: var(--font-bold);
     line-height: var(--font-line-height-title-l);
-    text-transform: uppercase;
+}
+
+h3 {
+    font-family: var(--font-family-title), system-ui, serif;
+    font-size: var(--font-title-m);
+    line-height: var(--font-line-height-title-m);
 }
 
 p {
-    font-family: var(--font-family-body), system-ui;
+    font-family: var(--font-family-body), system-ui, sans-serif;
     font-size: var(--font-body-m);
     line-height: var(--font-line-height-body-m);
     letter-spacing: 0;
 }
 
+a {
+    color: inherit;
+}
+
 @utility font-family-title-xs {
-    font-family: var(--font-family-title), system-ui;
+    font-family: var(--font-family-title), system-ui, serif;
     font-size: var(--font-title-xs);
     line-height: var(--font-line-height-title-xs);
     letter-spacing: 0;
 }
 
 @utility font-family-title-s {
-    font-family: var(--font-family-title), system-ui;
+    font-family: var(--font-family-title), system-ui, serif;
     font-size: var(--font-title-s);
     line-height: var(--font-line-height-title-s);
     letter-spacing: 0;
 }
 
 @utility font-family-body-xs {
-    font-family: var(--font-family-body), system-ui;
+    font-family: var(--font-family-body), system-ui, sans-serif;
     font-size: var(--font-body-xs);
     line-height: var(--font-line-height-body-xs);
     letter-spacing: 0;
 }
 
 @utility font-family-body-s {
-    font-family: var(--font-family-body), system-ui;
+    font-family: var(--font-family-body), system-ui, sans-serif;
     font-size: var(--font-body-s);
     line-height: var(--font-line-height-body-s);
     letter-spacing: 0;
 }
 
 @utility font-family-body-m {
-    font-family: var(--font-family-body), system-ui;
+    font-family: var(--font-family-body), system-ui, sans-serif;
     font-size: var(--font-body-m);
     line-height: var(--font-line-height-body-m);
     letter-spacing: 0;
 }
 
 @utility font-family-body-l {
-    font-family: var(--font-family-body), system-ui;
+    font-family: var(--font-family-body), system-ui, sans-serif;
     font-size: var(--font-body-l);
     line-height: var(--font-line-height-body-l);
     letter-spacing: 0;
+}
+
+.background-color-base {
+    background-color: var(--color-bg);
+}
+
+.background-color-alternate {
+    background-color: var(--color-bg-alternate);
+}
+
+.background-color-dark {
+    background-color: var(--color-bg-dark);
 }

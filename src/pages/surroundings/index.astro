@@ -1,0 +1,19 @@
+---
+import Layout from '@/layout/Layout.astro';
+import PageHeader from '@/components/pages/PageHeader.astro';
+import SurroundingsSection from '@/components/pages/surroundings/SurroundingsSection.astro';
+import HeaderBackgroundImage from '@/assets/images/sleep/header.jpg';
+---
+
+<Layout
+    headerVariant="transparent"
+    title="Les environs"
+    description="Villages perchés, abbayes, estaminets et sentiers de randonnée dans les Monts de Flandre — tout part de la ferme, à pied ou à vélo."
+>
+    <PageHeader
+        backgroundImage={HeaderBackgroundImage}
+        eyebrow="Les environs"
+        title="Les Monts de Flandre, à votre porte"
+    />
+    <SurroundingsSection />
+</Layout>

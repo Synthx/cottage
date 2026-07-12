@@ -1,0 +1,63 @@
+---
+import PlaceCard from '@/components/pages/PlaceCard.astro';
+import BackgroundSection from '@/components/pages/BackgroundSection.astro';
+import type { Link } from '@/content/schemas/shared.ts';
+
+const BREADCRUMBS: Link[] = [
+    {
+        href: '/activities',
+        label: 'Les environs',
+    },
+];
+
+const PLACES = [
+    {
+        distance: '15 min',
+        title: 'Le Mont Cassel',
+        text: 'Village perché « plus beau village de France », son moulin et son panorama à 360°.',
+    },
+    {
+        distance: '20 min',
+        title: 'Abbaye du Mont des Cats',
+        text: 'Fromage trappiste, bière de l’abbaye et sentiers boisés tout autour.',
+    },
+    {
+        distance: 'au départ',
+        title: 'Les sentiers des Monts',
+        text: 'Boucles balisées de 5 à 20 km au départ direct de la ferme.',
+    },
+    {
+        distance: 'week-end',
+        title: 'Marchés flamands',
+        text: 'Bailleul, Cassel, Hazebrouck : maraîchers et producteurs du coin.',
+    },
+    {
+        distance: 'le soir',
+        title: 'Estaminets flamands',
+        text: 'Potjevleesch, carbonnade et bière locale dans des tables pleines de caractère.',
+    },
+    {
+        distance: '40 min',
+        title: 'La côte & les plages',
+        text: 'Dunkerque et les grandes plages du Nord pour une escapade iodée.',
+    },
+];
+---
+
+<BackgroundSection
+    backgroundColor="alternate"
+    breadcrumbs={BREADCRUMBS}
+    title="Nos activitités"
+>
+    <div class="grid">
+        {PLACES.map((place) => <PlaceCard {...place} />)}
+    </div>
+</BackgroundSection>
+
+<style>
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-175);
+    }
+</style>

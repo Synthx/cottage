@@ -1,0 +1,121 @@
+---
+import { Picture } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Link from '@/components/action/Link.astro';
+
+interface Props {
+    room: CollectionEntry<'bedrooms'>['data'];
+    description: string;
+    tags: string[];
+    reverse?: boolean;
+}
+
+const { room, description, tags, reverse } = Astro.props;
+const priceFormatter = new Intl.NumberFormat('fr-FR', {
+    style: 'currency',
+    currency: 'EUR',
+});
+---
+
+<div class:list={['room-row', { reverse }]}>
+    <div class="media">
+        <Picture
+            width={900}
+            height={720}
+            src={room.image}
+            alt={`Chambre ${room.name}`}
+            formats={['avif', 'webp']}
+            layout="fixed"
+        />
+    </div>
+    <div class="body">
+        <div class="head">
+            <h3>{room.name}</h3>
+            <span class="price"
+                >{priceFormatter.format(room.price)}<span class="per">
+                    / nuit</span
+                ></span
+            >
+        </div>
+        <p>{description}</p>
+        <div class="tags">
+            {tags.map((tag) => <span class="tag">{tag}</span>)}
+        </div>
+        <Link href={room.href}>Voir la chambre</Link>
+    </div>
+</div>
+
+<style>
+    .room-row {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .room-row.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .media {
+        flex: 1;
+        position: relative;
+        min-height: 400px;
+        background: var(--ph);
+        overflow: hidden;
+    }
+
+    .media :global(img) {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--spacing-100);
+        padding-block: var(--spacing-250);
+        padding-inline: var(--spacing-250);
+        background: var(--color-bg);
+        color: var(--color-fg);
+    }
+
+    .room-row.reverse .body {
+        background: var(--color-bg-dark);
+        color: var(--color-fg-inverse);
+    }
+
+    .head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--spacing-150);
+    }
+
+    .price {
+        font-family: var(--font-family-title), serif;
+        font-size: var(--font-title-xs);
+        color: var(--color-fg-brand);
+        white-space: nowrap;
+    }
+
+    .per {
+        font-family: var(--font-family-body), sans-serif;
+        font-size: var(--font-body-s);
+    }
+
+    .body p {
+        max-width: 420px;
+        margin: 0;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-50);
+        margin-top: var(--spacing-50);
+    }
+</style>

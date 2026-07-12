@@ -1,0 +1,84 @@
+---
+import BackgroundSection from '@/components/pages/BackgroundSection.astro';
+
+const REVIEWS = [
+    {
+        quote: '« Le calme absolu et un petit déjeuner à tomber. On a repoussé notre départ d’un jour. »',
+        author: 'Léa & Marc — Paris',
+    },
+    {
+        quote: '« Camille et Étienne reçoivent comme des amis. La chambre du Fournil est un cocon. »',
+        author: 'Sofie — Gand',
+    },
+    {
+        quote: '« Une parenthèse hors du temps, à 45 minutes de chez nous. On y retourne à l’automne. »',
+        author: 'Thomas — Lille',
+    },
+];
+---
+
+<BackgroundSection
+    backgroundColor="base"
+    eyebrow="Le livre d'or"
+    title="Ce qu'ils en gardent"
+>
+    <div class="grid">
+        {
+            REVIEWS.map((review) => (
+                <blockquote class="card">
+                    <div class="stars" aria-label="5 sur 5">
+                        ★★★★★
+                    </div>
+                    <p class="quote">{review.quote}</p>
+                    <footer>{review.author}</footer>
+                </blockquote>
+            ))
+        }
+    </div>
+</BackgroundSection>
+
+<style>
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-175);
+        max-width: 1320px;
+        margin: 0 auto;
+    }
+
+    .card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-s);
+        padding: var(--spacing-200);
+        margin: 0;
+    }
+
+    .stars {
+        color: var(--terra);
+        font-size: var(--font-body-m);
+        letter-spacing: 2px;
+    }
+
+    .quote {
+        font-family: var(--font-family-title), serif;
+        font-size: var(--font-body-xl);
+        font-style: italic;
+        line-height: 1.5;
+        color: var(--brown);
+        margin: var(--spacing-100) 0 0;
+    }
+
+    footer {
+        font-size: var(--font-body-s);
+        color: var(--muted);
+        font-weight: var(--font-semibold);
+        margin-top: var(--spacing-125);
+    }
+
+    @media (max-width: 860px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

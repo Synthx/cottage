@@ -1,0 +1,26 @@
+---
+import Layout from '@/layout/Layout.astro';
+import PageHeader from '@/components/pages/PageHeader.astro';
+import GallerySection from '@/components/pages/gallery/GallerySection.astro';
+import HeaderBackgroundImage from '@/assets/images/sleep/header.jpg';
+---
+
+<Layout
+    headerVariant="transparent"
+    title="Galerie"
+    description="Un air de campagne — les chambres, la table, le jardin et les Monts de Flandre en images."
+>
+    <PageHeader
+        backgroundImage={HeaderBackgroundImage}
+        eyebrow="Galerie"
+        title="Un air de campagne"
+    />
+    <GallerySection title="Les chambres" variant="grid3" count={6} />
+    <GallerySection
+        title="La table & le jardin"
+        variant="mosaic"
+        count={5}
+        featuredLabel="petit déjeuner"
+    />
+    <GallerySection title="Les Monts de Flandre" variant="grid4" count={4} />
+</Layout>

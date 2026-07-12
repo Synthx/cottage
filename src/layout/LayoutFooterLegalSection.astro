@@ -1,0 +1,35 @@
+---
+import { APP_NAME } from '@/config/contact.ts';
+---
+
+<div class="legal-section">
+    <p>2026 © {APP_NAME} · Chambres d'hôtes · Nord</p>
+    <div class="legal">
+        <a href="/legal-notice">Mentions légales</a>
+        <a href="/privacy-policy">Politique de confidentialité</a>
+    </div>
+</div>
+
+<style>
+    .legal-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--spacing-250);
+        font-size: var(--font-body-xs);
+        opacity: 0.75;
+
+        .legal {
+            display: flex;
+            gap: var(--spacing-100);
+        }
+
+        .legal a {
+            text-decoration: none;
+        }
+
+        .legal a:hover {
+            text-decoration: underline;
+        }
+    }
+</style>

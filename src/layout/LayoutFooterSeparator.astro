@@ -1,0 +1,25 @@
+---
+import { getImage } from 'astro:assets';
+import FooterPreviewImage from '@/assets/images/preview.jpg';
+
+const image = await getImage({
+    src: FooterPreviewImage,
+    format: 'webp',
+});
+---
+
+<section
+    class="footer-separator"
+    style={{ backgroundImage: `url(${image.src})` }}
+>
+</section>
+
+<style>
+    .footer-separator {
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 400px;
+    }
+</style>

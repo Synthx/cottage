@@ -1,0 +1,39 @@
+---
+interface Props {
+    eyebrow?: string;
+    level?: 'h1' | 'h2';
+    align?: 'center' | 'left';
+    class?: string;
+}
+
+const {
+    eyebrow,
+    level = 'h2',
+    align = 'center',
+    class: className,
+} = Astro.props;
+
+const Tag = level;
+---
+
+<div class:list={['section-heading', align, className]}>
+    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    <Tag class="heading"><slot /></Tag>
+</div>
+
+<style>
+    .section-heading {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-75);
+    }
+
+    .section-heading.center {
+        align-items: center;
+        text-align: center;
+    }
+
+    .heading {
+        color: var(--brown);
+    }
+</style>

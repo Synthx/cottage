@@ -1,5 +1,5 @@
 ---
-import LayoutHeaderTopBar from '@/layout/LayoutHeaderTopBar.astro';
+import LayoutHeaderDesktop from '@/layout/LayoutHeaderDesktop.astro';
 
 interface Props {
     variant?: 'default' | 'transparent';
@@ -8,163 +8,95 @@ interface Props {
 const { variant = 'default' } = Astro.props;
 ---
 
-<header class:list={['header', variant]}>
-    <LayoutHeaderTopBar />
-    <nav class="content justify-between">
-        <ul class="navigation">
-            <li>
-                <a class="item" href="/">Accueil</a>
-            </li>
-            <li>
-                <a class="item" href="/sleep">Se reposer</a>
-            </li>
-            <li>
-                <a class="item" href="/sleep">S'échapper</a>
-            </li>
-        </ul>
-        <a class="link" href="/book"> Réserver en direct </a>
-    </nav>
+<header class:list={['header', variant]} data-header>
+    <div class="header-top-bar">
+        <div class="header-top-bar-content">
+            <a href="tel:+33620652511" aria-label="Appeler maintenant"
+                >+33 (0)6 20 65 25 11</a
+            >
+            <a
+                href="mailto:laurent@lamaisondutraict.com"
+                aria-label="Envoyer un email">laurent@lamaisondutraict.com</a
+            >
+        </div>
+    </div>
+    <LayoutHeaderDesktop />
 </header>
 
 <style>
-    @property --padding-bottom {
-        syntax: '<length>';
-        inherits: false;
-        initial-value: 0rem;
-    }
-
-    @property --shadow-opacity {
+    @property --reveal {
         syntax: '<number>';
         inherits: false;
         initial-value: 0;
     }
 
+    @property --background-color {
+        syntax: '<color>';
+        inherits: false;
+        initial-value: var(--color-bg);
+    }
+
     .header {
+        position: fixed;
         top: 0;
         width: 100%;
         z-index: 100;
-        box-shadow: rgba(0, 0, 0, calc(0.2 * var(--shadow-opacity))) 0 2px 8px;
-        animation: headerScrollVariables linear auto both;
-        animation-timeline: scroll(root);
-        animation-range: 0 150px;
 
         &.default {
-            position: sticky;
-            background: var(--background);
-
-            .top-bar {
-                background: var(--primary);
-                border-bottom-color: var(--primary);
-            }
-
-            .content {
-                .navigation .item {
-                    color: var(--primary);
-
-                    &:hover {
-                        border-bottom-color: var(--primary);
-                    }
-                }
-
-                .link {
-                    color: var(--primary);
-                    border-color: var(--primary);
-
-                    &:hover {
-                        background: var(--primary);
-                        color: var(--primary-foreground);
-                    }
-                }
-            }
+            background: var(--color-bg);
+            color: var(--color-fg);
+            border-bottom: 1px solid var(--line);
+            box-shadow: rgba(58, 42, 30, 1) 0 6px 18px -8px;
         }
 
         &.transparent {
-            position: fixed;
-            background: linear-gradient(
-                to top,
-                rgba(0, 0, 0, 0) 0%,
-                rgba(0, 0, 0, 0) 2%,
-                rgba(0, 0, 0, 0.95) 100%
+            color: color-mix(
+                in srgb,
+                var(--color-fg) calc(var(--reveal) * 100%),
+                var(--color-fg-inverse)
             );
-
-            .top-bar {
-                background: transparent;
-                border-bottom-color: rgba(255, 255, 255, 0.2);
-            }
-
-            .content {
-                .navigation .item {
-                    color: rgb(255, 255, 255);
-
-                    &:hover {
-                        border-bottom-color: rgb(255, 255, 255);
-                    }
-                }
-
-                .link {
-                    color: var(--primary-foreground);
-                    border-color: var(--primary-foreground);
-
-                    &:hover {
-                        background: var(--primary-foreground);
-                        color: var(--primary);
-                    }
-                }
-            }
+            background: var(--background-color);
+            animation: headerReveal linear both;
+            animation-timeline: scroll(root);
+            animation-range: 0 200px;
         }
 
-        .content {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: var(--spacing-100) var(--spacing-150) var(--padding-bottom);
+        .header-top-bar {
+            background-color: var(--color-bg-brand);
+            color: var(--color-fg-inverse);
 
-            .navigation {
+            .header-top-bar-content {
                 display: flex;
+                justify-content: flex-end;
                 align-items: center;
                 gap: var(--spacing-150);
+                max-width: 1280px;
+                margin: 0 auto;
+                padding-block: var(--spacing-50);
+                padding-inline: var(--spacing-450);
 
-                .item {
-                    text-transform: uppercase;
+                a {
+                    font-size: var(--font-body-s);
+                    line-height: var(--font-line-height-body-s);
                     text-decoration: none;
-                    border-bottom: 2px solid transparent;
-                    padding-block: var(--spacing-25);
-                    font-family: var(--font-family-title), system-ui;
-                    font-size: var(--font-title-xs);
-                    font-weight: var(--font-bold);
-                    line-height: var(--font-line-height-title-xs);
-                    letter-spacing: 0;
                 }
-            }
-
-            .link {
-                background: transparent;
-                border: 1px solid;
-                text-align: center;
-                text-decoration: none;
-                text-transform: uppercase;
-                border-radius: var(--radius-xs);
-                font-family: var(--font-family-title), system-ui;
-                font-size: var(--font-body-m);
-                font-weight: var(--font-semibold);
-                line-height: var(--font-line-height-body-m);
-                letter-spacing: 0;
-                padding: 6px 20px;
             }
         }
     }
 
-    @keyframes headerScrollVariables {
+    @keyframes headerReveal {
         from {
-            --padding-bottom: var(--spacing-400);
-            --shadow-opacity: 0;
+            --reveal: 0;
+            --background-color: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0) 2%,
+                rgba(0, 0, 0, 0.9) 100%
+            );
         }
-
         to {
-            --padding-bottom: var(--spacing-100);
-            --shadow-opacity: 1;
+            --reveal: 1;
+            --background-color: var(--color-bg);
         }
     }
 </style>

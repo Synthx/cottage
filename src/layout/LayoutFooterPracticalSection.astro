@@ -1,0 +1,98 @@
+---
+import Button from '@/components/action/Button.astro';
+import { CONTACT_PHONE, ADDRESS } from '@/config/contact.ts';
+---
+
+<section class="practical">
+    <div class="media">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20314.533461771203!2d3.0450367164225667!3d50.47244793214302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2cdf62fd7d72b%3A0x40af13e816454c0!2s59239%20Thumeries!5e0!3m2!1sfr!2sfr!4v1783788500506!5m2!1sfr!2sfr"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            loading="lazy"
+            title="Google Maps"
+            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <div class="body">
+        <span class="eyebrow eyebrow-clay">Nous trouver</span>
+        <h2>Venir au Clos</h2>
+        <address class="lines">
+            {ADDRESS.map((line) => <span>{line}</span>)}
+        </address>
+        <p class="travel">
+            Lille — 30 min · Dunkerque — 60 min<br />À deux pas des sentiers de
+            la Pévèle.
+        </p>
+        <div class="actions">
+            <Button href="/contact">Nous écrire</Button>
+            <Button
+                variant="outline"
+                href={`tel:${CONTACT_PHONE.replace(/[^+\d]/g, '')}`}
+                >{CONTACT_PHONE}</Button
+            >
+        </div>
+    </div>
+</section>
+
+<style>
+    .practical {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        background-color: var(--sage-dark);
+        color: var(--color-fg-inverse);
+    }
+
+    .body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: var(--spacing-250);
+    }
+
+    .eyebrow-clay {
+        color: var(--clay);
+    }
+
+    .body h2 {
+        color: var(--color-fg-inverse);
+        margin-top: var(--spacing-75);
+    }
+
+    .lines {
+        display: flex;
+        flex-direction: column;
+        font-style: normal;
+        font-size: var(--font-body-m);
+        line-height: 1.9;
+        margin-top: var(--spacing-175);
+    }
+
+    .travel {
+        font-size: var(--font-body-s);
+        line-height: 1.9;
+        opacity: 0.85;
+        margin-top: var(--spacing-100);
+    }
+
+    .actions {
+        display: flex;
+        gap: var(--spacing-75);
+        flex-wrap: wrap;
+        margin-top: var(--spacing-200);
+    }
+
+    @media (max-width: 860px) {
+        .practical {
+            flex-direction: column;
+        }
+
+        .media {
+            min-height: 260px;
+        }
+
+        .body {
+            padding: var(--spacing-300) var(--spacing-150);
+        }
+    }
+</style>

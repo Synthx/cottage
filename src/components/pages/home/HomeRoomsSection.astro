@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import RoomPreviewRow from '@/components/pages/RoomPreviewRow.astro';
+import BackgroundSection from '@/components/pages/BackgroundSection.astro';
+import Link from '@/components/action/Link.astro';
+
+const rooms = (await getCollection('bedrooms')).sort(
+    (a, b) => a.data.order - b.data.order,
+);
+const featured = rooms.slice(0, 2);
+
+const firstParagraph = (body: string | undefined) =>
+    (body ?? '')
+        .trim()
+        .split(/\n\s*\n/)[0]
+        .replace(/\s+/g, ' ')
+        .trim();
+---
+
+<BackgroundSection
+    backgroundColor="alternate"
+    eyebrow="Les chambres"
+    title="Dormir sous les toits"
+>
+    <div class="rooms">
+        {
+            featured.map((room, index) => (
+                <RoomPreviewRow
+                    room={room.data}
+                    description={firstParagraph(room.body)}
+                    tags={[
+                        `${room.data.capacity} personnes`,
+                        `${room.data.surface} m²`,
+                    ]}
+                    reverse={index % 2 === 1}
+                />
+            ))
+        }
+    </div>
+    <Link class="cta" href="/sleep">Voir les {rooms.length} chambres</Link>
+</BackgroundSection>
+
+<style>
+    .rooms {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cta {
+        align-self: center;
+    }
+</style>

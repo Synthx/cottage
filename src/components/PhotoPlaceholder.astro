@@ -1,0 +1,43 @@
+---
+/**
+ * Diagonal-stripe placeholder standing in for real photography.
+ * Swap for <Picture> once imagery is available.
+ */
+interface Props {
+    label?: string;
+    class?: string;
+}
+
+const { label, class: className } = Astro.props;
+---
+
+<div
+    class:list={['photo-placeholder', className]}
+    role="img"
+    aria-label={label}
+>
+    {label && <span class="caption">{label}</span>}
+</div>
+
+<style>
+    .photo-placeholder {
+        position: relative;
+        background: var(--ph);
+        overflow: hidden;
+    }
+
+    .caption {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: var(--spacing-100);
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: var(--font-body-xs);
+        font-weight: var(--font-medium);
+        letter-spacing: 0.04em;
+        color: rgba(58, 42, 30, 0.4);
+    }
+</style>

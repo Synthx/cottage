@@ -1,0 +1,60 @@
+---
+import BackgroundSection from '@/components/pages/BackgroundSection.astro';
+import Link from '@/components/action/Link.astro';
+---
+
+<BackgroundSection backgroundColor="dark">
+    <span class="eyebrow eyebrow-clay">Vos hôtes</span>
+    <p class="quote">
+        « On aime cet instant où un client arrive fatigué de la route et repart,
+        deux jours plus tard, en promettant de revenir. »
+    </p>
+    <div class="people">
+        <span class="avatar"></span>
+        <div>
+            <div class="name">Sophie &amp; Yann</div>
+            <div class="role">vos hôtes depuis 2016</div>
+        </div>
+    </div>
+    <Link href="/contact">Venir nous voir</Link>
+</BackgroundSection>
+
+<style>
+    .eyebrow-clay {
+        color: var(--clay);
+    }
+
+    .quote {
+        font-family: var(--font-family-title), serif;
+        font-size: var(--font-title-m);
+        font-weight: var(--font-medium);
+        line-height: 1.45;
+        text-wrap: pretty;
+        color: var(--color-fg-inverse);
+    }
+
+    .people {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-75);
+        color: var(--color-fg-inverse);
+    }
+
+    .avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--ph);
+        flex: none;
+    }
+
+    .name {
+        font-weight: var(--font-semibold);
+        font-size: var(--font-body-m);
+    }
+
+    .role {
+        font-size: var(--font-body-s);
+        color: var(--clay);
+    }
+</style>

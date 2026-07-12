@@ -1,57 +1,166 @@
 ---
-import { APP_NAME } from '@/config/contact.ts';
+import { APP_NAME, CONTACT_EMAIL, CONTACT_PHONE } from '@/config/contact.ts';
+import LayoutFooterLegalSection from '@/layout/LayoutFooterLegalSection.astro';
+import LayoutFooterPracticalSection from '@/layout/LayoutFooterPracticalSection.astro';
+import LayoutFooterSeparator from '@/layout/LayoutFooterSeparator.astro';
 
-const currentYear = new Date().getFullYear();
+const NAV = [
+    { label: 'Les chambres', href: '/sleep' },
+    { label: 'La maison', href: '/house' },
+    { label: 'Galerie', href: '/gallery' },
+    { label: 'Les environs', href: '/surroundings' },
+    { label: 'Nous trouver', href: '/contact' },
+];
 ---
 
-<footer class="footer">
-    <div class="copyright">
-        <span class="notice">Copyright © {currentYear} {APP_NAME}</span>
-        <div class="legal">
-            <a class="link" href="/legal-notice"> Mentions légales </a>
-            <a class="link" href="/privacy-policy">
-                Politique de confidentialité
-            </a>
+<LayoutFooterSeparator />
+<LayoutFooterPracticalSection />
+<footer class="footer-container">
+    <div class="footer">
+        <div class="top">
+            <div class="about">
+                <span class="brand-name">{APP_NAME}</span>
+                <p>
+                    Chambres d'hôtes dans une ferme flamande restaurée, au cœur
+                    du Nord et de la Pévèle.
+                </p>
+            </div>
+            <nav class="links" aria-label="Pied de page">
+                {NAV.map((item) => <a href={item.href}>{item.label}</a>)}
+            </nav>
+            <address class="contact">
+                <a href={`tel:${CONTACT_PHONE.replace(/[^+\d]/g, '')}`}>
+                    {CONTACT_PHONE}
+                </a>
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+            </address>
         </div>
+        <span class="" aria-hidden="true"></span>
+        <LayoutFooterLegalSection />
     </div>
 </footer>
 
 <style>
+    .footer-container {
+        background-color: var(--color-bg-dark);
+        color: var(--color-fg-inverse);
+    }
+
     .footer {
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
         display: flex;
         flex-direction: column;
+        gap: var(--spacing-250);
+        padding-block: var(--spacing-250);
+        padding-inline: var(--spacing-150);
 
-        .copyright {
-            background: var(--primary);
-            color: var(--primary-foreground);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: var(--spacing-150);
-            padding: var(--spacing-100) var(--spacing-150);
+        @media (min-width: 1024px) {
+            padding-inline: var(--spacing-450);
+        }
+    }
 
-            .notice {
-                font-size: var(--font-body-s);
-                line-height: var(--font-line-height-body-s);
-                letter-spacing: 0;
-            }
+    .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: var(--spacing-250);
+    }
 
-            .legal {
-                display: flex;
-                align-items: center;
-                gap: var(--spacing-75);
+    .about {
+        max-width: 280px;
+    }
 
-                .link {
-                    font-size: var(--font-body-s);
-                    line-height: var(--font-line-height-body-s);
-                    letter-spacing: 0;
-                    text-decoration: none;
+    .brand-name {
+        font-family: var(--font-family-title), serif;
+        font-size: var(--font-title-xs);
+        color: var(--cream);
+    }
 
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                }
-            }
+    .about p {
+        font-size: var(--font-body-s);
+        line-height: 1.7;
+        margin: var(--spacing-75) 0 0;
+    }
+
+    .links {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-100);
+        font-size: var(--font-body-s);
+    }
+
+    .links a {
+        text-decoration: none;
+        transition: color 0.18s ease;
+    }
+
+    .links a:hover {
+        color: var(--cream);
+    }
+
+    .col-title {
+        display: block;
+        font-family: var(--font-family-title), serif;
+        font-size: var(--font-title-xs);
+        color: var(--cream);
+        margin-bottom: var(--spacing-75);
+    }
+
+    .find {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        font-size: var(--font-body-s);
+        line-height: 1.9;
+    }
+
+    .find .lines {
+        display: flex;
+        flex-direction: column;
+        font-style: normal;
+    }
+
+    .find .access {
+        margin: var(--spacing-50) 0 var(--spacing-75);
+        font-size: var(--font-body-xs);
+        opacity: 0.85;
+    }
+
+    .directions {
+        align-self: flex-start;
+        text-decoration: none;
+        color: var(--cream);
+        transition: opacity 0.18s ease;
+    }
+
+    .directions:hover {
+        opacity: 0.75;
+    }
+
+    .contact {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        font-style: normal;
+        font-size: var(--font-body-s);
+        line-height: 1.9;
+    }
+
+    .contact a {
+        text-decoration: none;
+        transition: color 0.18s ease;
+    }
+
+    .contact a:hover {
+        color: var(--cream);
+    }
+
+    @media (max-width: 860px) {
+        .top {
+            flex-direction: column;
+            gap: var(--spacing-200);
         }
     }
 </style>

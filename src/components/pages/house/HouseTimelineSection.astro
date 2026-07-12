@@ -1,0 +1,82 @@
+---
+import BackgroundSection from '@/components/pages/BackgroundSection.astro';
+const STEPS = [
+    {
+        year: '1834',
+        title: 'La ferme d’origine',
+        text: 'Bâtie en briques de pays au pied des Monts, autour d’une cour carrée.',
+    },
+    {
+        year: '2016',
+        title: 'La restauration',
+        text: 'Trois ans de chantier, en gardant chaque poutre et chaque tomette réparable.',
+    },
+    {
+        year: 'Aujourd’hui',
+        title: 'Nos chambres d’hôtes',
+        text: 'Une maison ouverte, une table d’hôtes et un jardin nourricier.',
+    },
+];
+---
+
+<BackgroundSection backgroundColor="alternate">
+    <ul class="grid">
+        {
+            STEPS.map((step) => (
+                <li>
+                    <span class="year">{step.year}</span>
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                </li>
+            ))
+        }
+    </ul>
+</BackgroundSection>
+
+<style>
+    .timeline {
+        background: var(--cream);
+        padding-bottom: var(--spacing-500);
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-175);
+        max-width: 1320px;
+        margin: 0 auto;
+    }
+
+    .grid li {
+        border-top: 2px solid var(--terra);
+        padding-top: var(--spacing-175);
+    }
+
+    .year {
+        display: block;
+        font-family: var(--font-family-title), serif;
+        font-size: 2.5rem;
+        line-height: 1;
+        color: var(--terra);
+    }
+
+    .grid h3 {
+        font-size: var(--font-title-s);
+        color: var(--brown);
+        margin-top: var(--spacing-75);
+    }
+
+    .grid p {
+        font-size: var(--font-body-s);
+        line-height: 1.6;
+        color: var(--muted);
+        margin-top: var(--spacing-50);
+    }
+
+    @media (max-width: 860px) {
+        .grid {
+            grid-template-columns: 1fr;
+            gap: var(--spacing-200);
+        }
+    }
+</style>

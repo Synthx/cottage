@@ -1,0 +1,124 @@
+/* Reusable cross-component primitives — Le Clos des 3 Monts */
+
+/* Horizontal page padding, collapses on mobile */
+.clos-pad {
+    padding-inline: var(--spacing-300);
+}
+
+/* Vertical section rhythm */
+.clos-section {
+    padding-block: var(--spacing-500);
+}
+
+/* Overline / eyebrow label */
+.eyebrow {
+    display: inline-block;
+    font-family: var(--font-family-body), system-ui, sans-serif;
+    font-size: var(--font-body-xs);
+    font-weight: var(--font-semibold);
+    letter-spacing: var(--letter-spacing-eyebrow);
+    text-transform: uppercase;
+    color: var(--terra);
+    line-height: 1;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-50);
+    border: 1px solid transparent;
+    border-radius: var(--radius-xs);
+    font-family: var(--font-family-body), system-ui, sans-serif;
+    font-size: var(--font-body-s);
+    font-weight: var(--font-semibold);
+    line-height: 1.2;
+    padding: 15px 28px;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease;
+}
+
+.btn-solid {
+    background: var(--terra);
+    color: var(--cream);
+}
+
+.btn-solid:hover {
+    background: var(--terra-dark);
+}
+
+.btn-outline {
+    background: transparent;
+    border-color: rgba(250, 243, 231, 0.55);
+    color: var(--cream);
+}
+
+.btn-outline:hover {
+    background: rgba(250, 243, 231, 0.12);
+}
+
+/* Sage feature tag / pill */
+.tag {
+    display: inline-block;
+    font-size: var(--font-body-xs);
+    font-weight: var(--font-medium);
+    color: var(--sage-dark);
+    background: rgba(126, 140, 106, 0.14);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    line-height: 1.2;
+}
+
+/* Underlined arrow link */
+.arrow-link {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: var(--font-body-s);
+    font-weight: var(--font-semibold);
+    color: var(--terra);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--terra);
+    padding-bottom: 3px;
+    cursor: pointer;
+    transition: opacity 0.18s ease;
+}
+
+.arrow-link:hover {
+    opacity: 0.7;
+}
+
+/* Photo placeholder fill */
+.ph {
+    background: var(--ph);
+}
+
+/* Entrance animation for page bodies */
+@keyframes closFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.clos-fade {
+    animation: closFadeIn 0.4s ease both;
+}
+
+@media (max-width: 860px) {
+    .clos-pad {
+        padding-inline: var(--spacing-150);
+    }
+
+    .clos-section {
+        padding-block: var(--spacing-400);
+    }
+}
