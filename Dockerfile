@@ -13,7 +13,6 @@ RUN npm run build
 
 FROM base AS runtime
 WORKDIR /app
-RUN apt-get update && apt-get install -y curl
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 ENV HOST=0.0.0.0
